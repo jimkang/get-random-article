@@ -1,6 +1,4 @@
 var Mediawiki = require('nodemw');
-// var jsonfile = require('jsonfile');
-// var probable = require('probable');
 var request = require('request');
 
 function getRandomArticle(opts, done) {
@@ -27,7 +25,6 @@ function getRandomArticle(opts, done) {
     }
     else {
       var randomTopic = getLast(decodeURI(response.req.path)).replace('_', ' ');
-      debugger;
       var wikipedia = new Mediawiki({
         server: language + '.wikipedia.org',
         path: '/w',
