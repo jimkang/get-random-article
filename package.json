@@ -1,6 +1,6 @@
 {
   "name": "get-random-article",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Gets a random Wikipedia article in Wikitext (instead of HTML).",
   "main": "get-random-article.js",
   "scripts": {
