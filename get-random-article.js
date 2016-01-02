@@ -4,15 +4,29 @@ var request = require('request');
 function getRandomArticle(opts, done) {
   // var topics = jsonfile.readFileSync(__dirname + '/data/topics.json');
   var language;
+  var wikipediaDomain;
+  var wikipediaProtocol;
+
   if (opts) {
     language = opts.language;
+    wikipediaDomain = opts.wikipediaDomain;
+    wikipediaProtocol = opts.wikipediaProtocol;
   }
 
   if (!language) {
     language = 'en';
   }
 
-  var randomURL = 'https://' + language + '.wikipedia.org/wiki/Special:Random';
+  var randomURL;
+
+  if (wikipediaDomain && wikipediaProtocol) {
+    randomURL = wikipediaProtocol + '://' + wikipediaDomain +
+      '/wiki/Special:Random';
+  }
+  else if (language) {
+    randomURL = 'https://' + language + '.wikipedia.org/wiki/Special:Random';
+  }
+
   var requestOpts = {
     url: randomURL,
     followRedirects: false
@@ -25,14 +39,18 @@ function getRandomArticle(opts, done) {
     }
     else {
       var randomTopic = getLast(decodeURI(response.req.path)).replace('_', ' ');
-      var wikipedia = new Mediawiki({
+      var mwOpts = {
         server: language + '.wikipedia.org',
         path: '/w',
         debug: false
-      });
+      };
 
+      if (wikipediaDomain) {
+        mwOpts.server = wikipediaDomain;
+      }
+
+      var wikipedia = new Mediawiki(mwOpts);
       wikipedia.getArticle(randomTopic, done);
-      // done(error, body);
     }
   }
 }

@@ -11,6 +11,12 @@ var testCases = [
     opts: {
       language: 'en'
     }
+  },
+  {
+    opts: {
+      wikipediaProtocol: 'http',
+      wikipediaDomain: 'bulbapedia.bulbagarden.net'
+    }
   }
 ];
 

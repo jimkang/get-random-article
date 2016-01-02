@@ -36,6 +36,13 @@ Output:
     The origin may be traced to Preuschen's ''Vollständiges Griechisch-Deutsches Handwörterbuch zu den Schriften des Neuen Testaments und der übrigen urchristlichen Literatur'' (1910).<ref>{{Cite journal | doi = 10.1515/zatw.1908.28.4.U | title =  Vollständiges Griechisch-Deu
     ...
 
+If you want to use a Wikipedia that is not on wikipedia.org, you need to specify `wikipediaProtocol` and `wikipediaDomain` params in the opts. e.g.:
+
+    {
+      wikipediaProtocol: 'http',
+      wikipediaDomain: 'bulbapedia.bulbagarden.net'
+    }
+
 There is also a command line utility, `get-specific-article.js`, for grabbing specific articles in this repo. The first parammeter is the topic to get, and the second is the language (e.g. "en", "es", "simple", etc.) for the Wikipedia to retrieve the article from.
 
     node tools/get-specific-article.js "foundation (nonprofit)" simple
